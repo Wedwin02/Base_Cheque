@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="container">
+    <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+        <div class="form-Group">
+            <label for="">NOMBRE</label>
+            <input type="text" class="form-control" placeholder="NOMBRE " formControlName="NOMBRE">
+
+        </div>
+        <div class="form-Group">
+            <label for="">CODIGO</label>
+            <input type="text" class="form-control" placeholder="CODIGO " formControlName="CODIGO">
+
+        </div>
+        <div class="form-Group row">
+            <div class="col">
+                <label for="">MARCA</label>
+                <input type="text" class="form-control" placeholder="MARCA " formControlName="MARCA">
+            </div>
+            <div class="col">
+                <label for="">PESO</label>
+                <input type="text" class="form-control" placeholder="PESO " formControlName="PESO">
+            </div>
+        </div>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+</div>
+<app-footer></app-footer>
