@@ -4,13 +4,14 @@ import { ApiService } from '../../servicios/api/api.service';
 import { ProductoI } from '../../models/productoId.interface';
 import { FormGroup,FormControl,Validator } from '@angular/forms';
 import { ResponseI } from '../../models/response.interface';
+import { AlertasService } from '../../servicios/alertas/alertas.service';
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
   styleUrl: './editar.component.css'
 })
 export class EditarComponent implements OnInit{
-  constructor(private activaterouter:ActivatedRoute, private router:Router, private api:ApiService){
+  constructor(private activaterouter:ActivatedRoute, private router:Router, private api:ApiService, private alerta:AlertasService){
 
   }
   datosProducts:ProductoI;
@@ -39,10 +40,10 @@ export class EditarComponent implements OnInit{
     this.api.putProducts(form).subscribe(data=>{
       let respuesta:ResponseI = data;
       if(respuesta.status = "ok"){
-        //this.alerta.showSuccess('Datos modificados','Hecho');
+        this.alerta.showSuccess('Datos modificados','Hecho');
         this.router.navigate(['dashboard']);
       }else{
-        //this.alerta.showError(respuesta.result.console.error_msg,'Error');
+        this.alerta.showError(respuesta.result.console.error_msg,'Error');
       }
     })
   }
@@ -51,10 +52,10 @@ export class EditarComponent implements OnInit{
     this.api.deleteProducts(datos).subscribe(data=>{
       let respuesta:ResponseI = data;
       if(respuesta.status = "ok"){
-        //this.alerta.showSuccess('Datos Eliminados','Hecho');
+        this.alerta.showSuccess('Datos Eliminados','Hecho');
         this.router.navigate(['dashboard']);
       }else{
-        //this.alerta.showError(respuesta.result.console.error_msg,'Error');
+        this.alerta.showError(respuesta.result.console.error_msg,'Error');
       }
     })
   }
